@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Monitoramento de Placas - Santana do Livramento</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/solucao.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+</head>
+<body>
+
+<div class="layout">
+  <header>
+    <h2>Campanha da Santana do Livramento</h2>
+  </header>
+
+  <main>
+    <section id="monitoramento" class="secao">
+      <div class="conteudo">
+        <div class="mapa">
+          <div id="map"></div>
+        </div>
+
+        <div class="formulario">
+          <h2>Registrar placa danificada</h2>
+          <form id="form">
+            <input name="titulo" placeholder="Título" class="form-control mb-3" required>
+            <textarea name="descricao" placeholder="Descrição" class="form-control mb-3"></textarea>
+            <input type="file" name="imagem" accept="image/*" class="form-control mb-3">
+            <button class="btn btn-primary w-100">Enviar</button>
+            <p id="msg" class="mt-2 text-success"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Monitoramento de Placas - Santana do Livramento</p>
+  </footer>
+</div>
+
+<!-- SCRIPTS no fim do body pra garantir que o mapa existe antes de carregar -->
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+<script>
+  // Espera o DOM carregar
+  document.addEventListener("DOMContentLoaded", () => {
+    const map = L.map('map').setView([-30.877, -55.536], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+    let marker = null;
+
+    map.on('click', e => {
+      if (marker) map.removeLayer(marker);
+      marker = L.marker(e.latlng).addTo(map);
+      document.querySelector('#form').dataset.lat = e.latlng.lat;
+      document.querySelector('#form').dataset.lng = e.latlng.lng;
+    });
+
+    const form = document.querySelector('#form');
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const data = new FormData(form);
+      data.append('lat', form.dataset.lat);
+      data.append('lng', form.dataset.lng);
+      const res = await fetch('/api/placas', { method: 'POST', body: data });
+      const json = await res.json();
+      document.querySelector('#msg').textContent = json.mensagem;
+      carregar();
+    });
+
+    async function carregar(){
+      const res = await fetch('/api/placas');
+      const placas = await res.json();
+      placas.forEach(p=>{
+        L.marker([p.lat, p.lng]).addTo(map)
+          .bindPopup(`<b>${p.titulo}</b><br>${p.descricao}<br><img src="/uploads/${p.imagem}" style="max-width:100px;border-radius:8px;margin-top:5px;">`);
+      });
+    }
+    carregar();
+  });
+</script>
+
+</body>
+</html>
