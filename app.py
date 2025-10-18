@@ -19,7 +19,9 @@ class Placa(db.Model):
     data = db.Column(db.DateTime, default=datetime.now)
     status = db.Column(db.String(50), default="pendente")
 
-db.create_all()
+with app.app_context():
+    db.create_all()
+
 
 @app.route('/')
 def index():
