@@ -182,13 +182,29 @@ main {
 .legenda .media { background-color: orange; }
 .legenda .baixa { background-color: green; }
 
+
+#docaot {
+  text-align: center;
+  line-height: 1;
+  margin-top: 20px;
+  font-size: 1.9rem;
+}
+
+#docaoI {
+display: block;
+  width: 20%;
+  margin: auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
 @media (max-width: 992px) {
-  .conteudo, .conteudoI {
+  .conteudo{
     flex-direction: column;
     text-align: center;
   }
 
-  .conteudo img, .conteudoI img {
+  .conteudo img{
     max-width: 100%;
   }
 
