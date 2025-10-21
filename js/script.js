@@ -76,9 +76,13 @@ document.getElementById('form-cadastro').addEventListener('submit', (e) => {
 });
 
 function copiarTexto() {
-
-  const textoParaCopiar = '00020126550014BR.GOV.BCB.PIX0133klebersonduartesantos39@gmail.com5204000053039865802BR5923Kleberson Duarte Santos6009SAO PAULO621405104vTWLEdaIl63049857'
+  const textoParaCopiar = '00020126550014BR.GOV.BCB.PIX0133klebersonduartesantos39@gmail.com5204000053039865802BR5923Kleberson Duarte Santos6009SAO PAULO621405104vTWLEdaIl63049857';
 
   navigator.clipboard.writeText(textoParaCopiar)
+    .then(() => {
+      const botao = document.getElementById("botaoCopiar");
+      botao.textContent = "Copiado";
+      setTimeout(() => botao.textContent = "Copiar", 1000);
+    })
+    .catch(err => console.error('Erro ao copiar texto: ', err));
 }
-
