@@ -11,23 +11,37 @@
 
 <div class="layout">
 <header>
-    <button class="voltar"><a href="index.html">Voltar</a></button>   
+    <button class="voltar" onclick="history.back()">Voltar</button>   
     <h2>Faça uma Doação</h2>
 </header>
 
   <main>
             
-            <p id="docaot">Ajude a melhorar a sinalização em Santana do Livramento fazendo uma doação para nossa campanha. Sua contribuição ajudará a financiar a produção e instalação de placas sustentáveis, além de promover a educação ambiental na comunidade.</p>
+            <p id="docaot">Ajude a melhorar a sinalização em Santana do Livramento fazendo uma doação para o nosso projeto. Sua contribuição ajudará a financiar a produção e instalação de placas sustentáveis, além de promover a educação ambiental na comunidade.</p>
                 <img id="docaoI" src="img/Qrcode.jpg" alt="falha ao carregar imagem">
 
+
+          <button class="doeB" id="botaoCopiar" onclick="copiarTexto()">Copiar</button>
   </main>
 
 <footer>
-  <p>Doe para a nossa campanha!</p>
+  <p>Doe para nos ajudar a melhorar a sinalização!</p>
 </footer>
 
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+ const botao = document.getElementById("botaoCopiar");
+
+  botao.addEventListener("click", function() {
+  botao.textContent = "Copiado";
+
+  setTimeout(function() {
+    botao.textContent = "Copiar";
+  }, 1000);
+});
+</script>
 </body>
+
 </html>

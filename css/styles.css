@@ -198,36 +198,15 @@ display: block;
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
-@media (max-width: 992px) {
-  .conteudo{
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .conteudo img{
-    max-width: 100%;
-  }
-
-  .mapa, .formulario {
-    width: 100%;
-    max-width: none;
-  }
-
-  #map {
-    height: 400px;
-  }
-}
-
-@media (max-width: 576px) {
-  header h2, footer p {
-    font-size: 1rem;
-  }
-
-  main {
-    padding: 15px;
-  }
-
-  #map {
-    height: 300px;
-  }
-}
+.doeB {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+} 

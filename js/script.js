@@ -71,6 +71,14 @@ document.getElementById('form-cadastro').addEventListener('submit', (e) => {
   const titulo = e.target.titulo.value;
   const descricao = e.target.descricao.value;
 
-  alert(`Placa registrada com sucesso!\n\nTítulo: ${titulo}\nDescrição: ${descricao}`);
+  alert(`O problema foi registrado com sucesso!\n\nTítulo: ${titulo}\nDescrição: ${descricao}`);
   e.target.reset();
 });
+
+function copiarTexto() {
+
+  const textoParaCopiar = '00020126550014BR.GOV.BCB.PIX0133klebersonduartesantos39@gmail.com5204000053039865802BR5923Kleberson Duarte Santos6009SAO PAULO621405104vTWLEdaIl63049857'
+
+  navigator.clipboard.writeText(textoParaCopiar)
+}
+
