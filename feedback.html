@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="layout">
+<header>
+    <button class="voltar" onclick="history.back()">Voltar</button>   
+    <h2>Feedback</h2>
+</header>
+
+  <main class="FeedMain">
+<form class="container" id="form-feedback" >
+  <label for="email">Email</label>
+  <input  class="formCont" name="email" id="email" placeholder="Email" type="Email" required>
+  <textarea  class="formCont" name="feed" id="feed" placeholder="Dê o seu feedback" required></textarea>
+
+  <div class="botoes">
+  <button type="submit">Enviar</button> 
+  <button type="reset">Limpar</button> 
+</div>
+  </form>
+  </main>
+
+<footer>
+  <p>Dê o seu feedback!</p>
+</footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/feedback.js"></script>
+</body>
+</html>
